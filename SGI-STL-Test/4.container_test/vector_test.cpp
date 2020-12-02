@@ -5,7 +5,7 @@
 int main()
 {
     int i;
-    std::vector<int> iv(2,9);
+    std::vector<int> iv(2, 9);
     std::cout << "size=" << iv.size() << std::endl;
     std::cout << "capacity=" << iv.capacity() << std::endl;
 
@@ -25,7 +25,8 @@ int main()
     std::cout << "size=" << iv.size() << std::endl;
     std::cout << "capacity=" << iv.capacity() << std::endl;
 
-    for(auto item:iv) {
+    for (const auto &item : iv)
+    {
         std::cout << item << " ";
     }
     std::cout << std::endl;
@@ -34,7 +35,8 @@ int main()
     std::cout << "size=" << iv.size() << std::endl;
     std::cout << "capacity=" << iv.capacity() << std::endl;
 
-    for(auto item:iv) {
+    for (const auto &item : iv)
+    {
         std::cout << item << " ";
     }
     std::cout << std::endl;
@@ -49,27 +51,31 @@ int main()
     std::cout << "capacity=" << iv.capacity() << std::endl;
 
     std::vector<int>::iterator it = std::find(iv.begin(), iv.end(), 1);
-    if (it != iv.end()) {
+    if (it != iv.end())
+    {
         iv.erase(it);
     }
     //erase之后的it是invalidated
     std::cout << "*it=" << *it << std::endl;
     std::cout << "size=" << iv.size() << std::endl;
     std::cout << "capacity=" << iv.capacity() << std::endl;
-    for(auto item:iv) {
+    for (const auto &item : iv)
+    {
         std::cout << item << " ";
     }
     std::cout << std::endl;
 
     it = std::find(iv.begin(), iv.end(), 2);
-    if (it != iv.end()) {
+    if (it != iv.end())
+    {
         iv.insert(it, 3, 7);
     }
     //insert之后it的值发生了变化，而list的insert之后，it值不会发生变化
     std::cout << "*it=" << *it << std::endl;
     std::cout << "size=" << iv.size() << std::endl;
     std::cout << "capacity=" << iv.capacity() << std::endl;
-    for(auto item:iv) {
+    for (const auto &item : iv)
+    {
         std::cout << item << " ";
     }
     std::cout << std::endl;

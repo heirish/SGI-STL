@@ -9,7 +9,7 @@ template <typename T>
 void DisplayIteratorable(const T &iteratorable)
 {
     std::cout << "size=" << iteratorable.size() << std::endl;
-    for (auto item : iteratorable)
+    for (const auto &item : iteratorable)
     {
         std::cout << item << " ";
     }
