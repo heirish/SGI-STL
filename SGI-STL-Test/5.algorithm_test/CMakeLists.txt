@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.0)
+project(vector_test VERSION 1.0.0)
+add_definitions("-std=c++17")
+
+add_executable(numeric_test numeric_test.cpp)
+add_executable(algobase_test algobase_test.cpp)
+add_executable(copyoverlap_test copyoverlap_test.cpp)
+add_executable(set_algorithm_test set_algorithm_test.cpp)
+add_executable(simple_test simple_test.cpp)

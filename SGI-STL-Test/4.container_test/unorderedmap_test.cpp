@@ -12,19 +12,19 @@ struct eqstr
 
 int main()
 {
-    std::unordered_map<const char *, int> days;
-    days["january"] = 31;
-    days["Feb"] = 28;
-    days["mar"] = 31;
-    days["apr"] = 30;
-    days["may"] = 31;
-    days["june"] = 30;
-    days["july"] = 31;
-    days["aug"] = 31;
-    days["sep"] = 30;
-    days["oct"] = 31;
-    days["nov"] = 30;
-    days["dec"] = 31;
+    std::unordered_map<const char *, int> days{
+        {"january", 31},
+        {"Feb", 28},
+        {"mar", 31},
+        {"apr", 30},
+        {"may", 31},
+        {"june", 30},
+        {"july", 31},
+        {"aug", 31},
+        {"sep", 30},
+        {"oct", 31},
+        {"nov", 30},
+        {"dec", 31}};
     for (int i = 0; i < days.bucket_count(); i++)
     {
         std::cout << "bucket " << i << ",size:" << days.bucket_size(i) << std::endl;
