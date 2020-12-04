@@ -58,8 +58,8 @@ int main()
               << std::endl;
 
     std::vector<int> iv2(ia + 6, ia + 8);
-    std::cout << *(std::find_end(iv.begin(), iv.end(), iv2.begin(), iv2.end())+3) << std::endl;
-    std::cout << *(std::find_first_of(iv.begin(), iv.end(), iv2.begin(), iv2.end())+3) << std::endl;
+    std::cout << *(std::find_end(iv.begin(), iv.end(), iv2.begin(), iv2.end()) + 3) << std::endl;
+    std::cout << *(std::find_first_of(iv.begin(), iv.end(), iv2.begin(), iv2.end()) + 3) << std::endl;
 
     std::for_each(iv.begin(), iv.end(), display<int>());
     std::cout << std::endl;
@@ -70,6 +70,47 @@ int main()
 
     std::generate_n(iv.begin(), 3, even_by_two());
     std::for_each(iv.begin(), iv.end(), display<int>());
+    std::cout << std::endl;
+
+    //只是将后面的非6进行了移动，实际并未删除，因此尾巴上可能会有遗留元素。
+    auto newEnd = std::remove(iv.begin(), iv.end(), 6);
+    std::cout << "new end" << *newEnd << std::endl;
+    std::for_each(iv.begin(), iv.end(), display<int>());
+    std::cout << std::endl;
+    iv.erase(newEnd, iv.end());
+    std::for_each(iv.begin(), iv.end(), display<int>());
+    std::cout << std::endl;
+
+    std::vector<int> iv3(12);
+    std::remove_copy(iv.begin(), iv.end(), iv3.begin(), 7);
+    std::for_each(iv3.begin(), iv3.end(), display<int>());
+    std::cout << std::endl;
+    std::for_each(iv.begin(), iv.end(), display<int>());
+    std::cout << std::endl;
+
+    //尾端可能有残余
+    std::cout << "remove elements < 6" << std::endl;
+    std::remove_if(iv.begin(), iv.end(), [](int x) { return std::less<int>()(x, 6); });
+    std::for_each(iv.begin(), iv.end(), display<int>());
+    std::cout << std::endl;
+
+    std::cout << "remove copy elements < 7" << std::endl;
+    iv3.clear();
+    iv3.resize(12);
+    std::remove_copy_if(iv.begin(), iv.end(), iv3.begin(), [](int x) { return std::less<int>()(x, 7); });
+    std::for_each(iv3.begin(), iv3.end(), display<int>());
+    std::cout << std::endl;
+
+    std::cout << "replace 7 with 3" << std::endl;
+    std::replace(iv.begin(), iv.end(), 7, 3);
+    std::for_each(iv.begin(), iv.end(), display<int>());
+    std::cout << std::endl;
+
+    std::cout << "replace 3 with 5 and copy" << std::endl;
+    iv3.clear();
+    iv3.resize(10);
+    std::replace_copy(iv.begin(), iv.end(), iv3.begin(), 3, 5);
+    std::for_each(iv3.begin(), iv3.end(), display<int>());
     std::cout << std::endl;
 
 }
